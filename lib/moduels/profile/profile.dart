@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,11 +15,12 @@ class HomePage extends StatelessWidget {
             items: [
               //1st Image of Slider
               Container(
+                width: double.infinity,
                 margin: EdgeInsets.all(6.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
                   image: DecorationImage(
-                    image: AssetImage("img/img1.jpg"),
+                    image: AssetImage("assets/images/img1.jpg"),
                     fit: BoxFit.cover,
                   ),
                 ),
