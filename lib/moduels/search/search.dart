@@ -6,7 +6,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List<Widget> prodect =[product()];
+  List<Widget> prodect = [product()];
 
   List<String>? search;
   final FocusNode _textFocusNode = FocusNode();
@@ -31,7 +31,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 controller: _textEditingController,
                 focusNode: _textFocusNode,
                 cursorColor: Colors.black,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
@@ -42,8 +42,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 onChanged: (value) {
                   setState(() {
                     search = prodect
-                        .where(
-                            (element) => element==(value.toLowerCase())).cast<String>()
+                        .where((element) => element == (value.toLowerCase()))
+                        .cast<String>()
                         .toList();
                     if (_textEditingController!.text.isNotEmpty &&
                         search!.length == 0) {
@@ -53,44 +53,44 @@ class _SearchScreenState extends State<SearchScreen> {
                 },
               ),
             )),
-        body: _textEditingController!.text.isNotEmpty &&
-            search!.length == 0
+        body: _textEditingController!.text.isNotEmpty && search!.length == 0
             ? Center(
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.search_off,
-                    size: 160,
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    children: const [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.search_off,
+                          size: 160,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'No results found,\nPlease try different keyword',
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'No results found,\nPlease try different keyword',
-                    style: TextStyle(
-                        fontSize: 30, fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        )
+              )
             : ListView.builder(
-            itemCount: _textEditingController!.text.isNotEmpty
-                ? search!.length
-                : prodect.length,
-            itemBuilder: (ctx, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: product(),
-              );
-            }));
+                itemCount: _textEditingController!.text.isNotEmpty
+                    ? search!.length
+                    : prodect.length,
+                itemBuilder: (ctx, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: product(),
+                  );
+                }));
   }
 }
+
 Widget product() {
   return Card(
     shape: OutlineInputBorder(
@@ -128,11 +128,11 @@ Widget product() {
                 children: const [
                   Expanded(
                       child: Text(
-                        'EGP' + '15',
-                        style: TextStyle(
-                            color: Colors.red, fontWeight: FontWeight.bold),
-                        textDirection: TextDirection.ltr,
-                      )),
+                    'EGP' + '15',
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
+                    textDirection: TextDirection.ltr,
+                  )),
                   Expanded(
                     flex: 1,
                     child: Text(
