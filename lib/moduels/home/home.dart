@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmacy/shaerd/provider/provider.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -98,7 +100,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                     alignment: Alignment.centerRight,
                     child: IconButton(
-                        onPressed: () async {},
+                        onPressed: () async {
+
+                        },
                         icon: const Icon(Icons.favorite_outline))),
                 //  SizedBox(height: 5,),
                 Container(
@@ -165,83 +169,80 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 25, fontWeight: FontWeight.bold, color: Colors.cyan),
           ),
           centerTitle: true),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(children: [
-          img(),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.all(15),
-            child: const Text(
-              "Catigores",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.cyan),
-            ),
+      body: ListView(children: [
+        img(),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.all(15),
+          child: const Text(
+            "Catigores",
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.cyan),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                container_row(
-                  'all',
-                ),
-                container_row(
-                  'first',
-                ),
-                container_row(
-                  'all',
-                ),
-                container_row(
-                  'first',
-                ),
-                container_row(
-                  'all',
-                ),
-                container_row(
-                  'first',
-                ),
-                container_row(
-                  'all',
-                ),
-                container_row(
-                  'first',
-                )
-              ],
-            ),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              container_row(
+                'all',
+              ),
+              container_row(
+                'first',
+              ),
+              container_row(
+                'all',
+              ),
+              container_row(
+                'first',
+              ),
+              container_row(
+                'all',
+              ),
+              container_row(
+                'first',
+              ),
+              container_row(
+                'all',
+              ),
+              container_row(
+                'first',
+              )
+            ],
           ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.all(15),
-            child: const Text(
-              "all product",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.cyan),
-            ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.all(15),
+          child: const Text(
+            "all product",
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.cyan),
           ),
-          Container(
-            height: height * 0.43,
-            width: width * 1,
-            padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-            child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 0.6,
-                    // childAspectRatio: 3 / 2,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20),
-                itemCount: myProducts.length,
-                itemBuilder: (BuildContext ctx, index) {
-                  return product();
-                }),
-          ),
-        ]),
-      ),
+        ),
+        Container(
+          height: height * 0.43,
+          width: width * 1,
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+          child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 0.6,
+                  // childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20),
+              itemCount: myProducts.length,
+              itemBuilder: (BuildContext ctx, index) {
+                return product();
+              }),
+        ),
+      ]),
     );
   }
 }
