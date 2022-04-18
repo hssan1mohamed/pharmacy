@@ -8,16 +8,8 @@ import 'package:pharmacy/moduels/profile/profile.dart';
 import 'package:pharmacy/moduels/search/search.dart';
 
 class MyProvider extends ChangeNotifier{
-  List<Widget> _favoriteList =[];
-  List <Widget> get favoriteList => _favoriteList;
-  void addToList(Widget prodect){
-    _favoriteList.add(prodect);
-    notifyListeners();
-  }
-  void removeFav(Widget prodect){
-    _favoriteList.remove(prodect);
-    notifyListeners();
-  }
+
+
   int currentIndex = 0;
   List <Widget> bootomScreen =[
     HomeTest(),

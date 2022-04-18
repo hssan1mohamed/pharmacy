@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pharmacy/shaerd/provider/provider.dart';
+import 'package:provider/provider.dart';
 class HomeTest extends StatelessWidget {
   const HomeTest({Key? key}) : super(key: key);
 
@@ -39,7 +41,7 @@ class HomeTest extends StatelessWidget {
           centerTitle: true),
       body: ListView(
         shrinkWrap: true,
-        physics: ScrollPhysics(),
+        physics: BouncingScrollPhysics(),
         children: [
           SizedBox(height: 10,),
       CarouselSlider(
@@ -232,7 +234,8 @@ class HomeTest extends StatelessWidget {
    }
  }
 class Grad extends StatelessWidget {
-  const Grad({Key? key}) : super(key: key);
+ Grad({Key? key}) : super(key: key);
+  int add =0;
 
   @override
   Widget build(BuildContext context) {
@@ -313,7 +316,7 @@ class Grad extends StatelessWidget {
                           onTap: (){},
                         ),
                         Spacer(),
-                        Text('01',style: TextStyle(
+                        Text('1',style: TextStyle(
                           fontWeight: FontWeight.bold
                         ),),
                         Spacer(),
@@ -328,7 +331,9 @@ class Grad extends StatelessWidget {
                             ),
                             child: Icon(Icons.add,size: 18,color: Colors.white,),
                           ),
-                          onTap: (){},
+                          onTap: (){
+
+                          },
                         ),
                         Spacer(),
                         InkWell(
