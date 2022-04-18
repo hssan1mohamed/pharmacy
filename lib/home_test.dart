@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pharmacy/shaerd/provider/provider.dart';
+import 'package:provider/provider.dart';
 class HomeTest extends StatelessWidget {
   const HomeTest({Key? key}) : super(key: key);
 
@@ -39,7 +41,7 @@ class HomeTest extends StatelessWidget {
           centerTitle: true),
       body: ListView(
         shrinkWrap: true,
-        physics: ScrollPhysics(),
+        physics: BouncingScrollPhysics(),
         children: [
           SizedBox(height: 10,),
       CarouselSlider(
@@ -72,7 +74,7 @@ class HomeTest extends StatelessWidget {
                   color: Colors.cyan),
             ),
           ),
-          itemName(),
+          const itemName(),
           Container(
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.all(15),
@@ -232,134 +234,158 @@ class HomeTest extends StatelessWidget {
    }
  }
 class Grad extends StatelessWidget {
-  const Grad({Key? key}) : super(key: key);
+ Grad({Key? key}) : super(key: key);
+  int add =0;
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-        physics: ScrollPhysics(),
-      shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 2 / 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20),
-        itemCount: 8,
-        itemBuilder: (BuildContext ctx, index) {
-          return Container(
-            height: 100,
-            width: 100,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-             boxShadow: [
-               BoxShadow(
-                 color: Colors.black12,
-                 spreadRadius: 1,
-                 blurRadius: 8,
-                 offset: Offset(0,4)
-               )
-             ]
 
-            ),
-            child: Column(
-              children: [
-                Container(
-                  height: 100,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20)
-                    ),
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/tes.png'),
-                      fit: BoxFit.cover
+    return Consumer<MyProvider>(builder: (context, provid, child) {
+      return GridView.builder(
+          physics: ScrollPhysics(),
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200,
+              childAspectRatio: 2 / 2,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20),
+          itemCount: 8,
+          itemBuilder: (BuildContext ctx, index) {
+            return Container(
+              height: 100,
+              width: 100,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12,
+                        spreadRadius: 1,
+                        blurRadius: 8,
+                        offset: Offset(0,4)
                     )
-                  ),
-                ),
-               // Image.asset('assets/images/img1.jpg',fit: BoxFit.cover,),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: const EdgeInsets.all(10),
-                  child: const Text(
-                    "Name",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
+                  ]
 
+              ),
+              child: Stack(
+                children: [
 
-
-                      children: [
-                        Spacer(),
-                        InkWell(
-                          child: Container(
-                            height: 30,
-                            width: 20,
-
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.cyan,
+                  Column(
+                    children: [
+                      Container(
+                        height: 100,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20)
                             ),
-                            child: Icon(Icons.remove,size: 18,color: Colors.white,),
-                          ),
-                          onTap: (){},
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/tes.png'),
+                                fit: BoxFit.cover
+                            )
                         ),
-                        Spacer(),
-                        Text('01',style: TextStyle(
-                          fontWeight: FontWeight.bold
-                        ),),
-                        Spacer(),
-                        InkWell(
-                          child: Container(
-                            height: 30,
-                            width: 20,
+                      ),
 
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.cyan,
-                            ),
-                            child: Icon(Icons.add,size: 18,color: Colors.white,),
-                          ),
-                          onTap: (){},
+                      // Image.asset('assets/images/img1.jpg',fit: BoxFit.cover,),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: const EdgeInsets.all(10),
+                        child: const Text(
+                          "Name",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
-                        Spacer(),
-                        InkWell(
-                          child: Container(
-                            height: 30,
-                            width: 20,
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
 
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                            ),
-                            child: Icon(Icons.shopping_cart,size: 20,),
+
+
+                            children: [
+                              Spacer(),
+                              InkWell(
+                                child: Container(
+                                  height: 30,
+                                  width: 20,
+
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Colors.cyan,
+                                  ),
+                                  child: Icon(Icons.remove,size: 18,color: Colors.white,),
+                                ),
+                                onTap: (){},
+                              ),
+                              Spacer(),
+                              Text('1',style: TextStyle(
+                                  fontWeight: FontWeight.bold
+                              ),),
+                              Spacer(),
+                              InkWell(
+                                child: Container(
+                                  height: 30,
+                                  width: 20,
+
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Colors.cyan,
+                                  ),
+                                  child: Icon(Icons.add,size: 18,color: Colors.white,),
+                                ),
+                                onTap: (){
+
+                                },
+                              ),
+                              Spacer(),
+                              InkWell(
+                                child: Container(
+                                  height: 30,
+                                  width: 20,
+
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Colors.white,
+                                  ),
+                                  child: Icon(Icons.shopping_cart,size: 20,),
+                                ),
+                                onTap: (){},
+                              ),
+                              Spacer()
+
+
+
+
+                            ],
                           ),
-                          onTap: (){},
                         ),
-                        Spacer()
+                      )
 
 
-
-
-                      ],
-                    ),
+                    ],
                   ),
-                )
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(onPressed: (){
+                        provid.ChangeFavIcon();
+                      }, icon: Icon(provid.nameIcon,color: Colors.red,)),
+                    ],
+                  ),
 
 
-              ],
-            ),
-          );
-        }
-        );
+                ],
+              ),
+
+            );
+          }
+      );
+
+    });
   }
 }
 

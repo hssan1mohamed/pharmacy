@@ -169,7 +169,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 25, fontWeight: FontWeight.bold, color: Colors.cyan),
           ),
           centerTitle: true),
-      body: ListView(children: [
+      body: ListView(
+          shrinkWrap: true,
+          physics: ScrollPhysics(),
+          children: [
         img(),
         Container(
           alignment: Alignment.centerLeft,
@@ -231,6 +234,8 @@ class _HomeScreenState extends State<HomeScreen> {
           width: width * 1,
           padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
           child: GridView.builder(
+            shrinkWrap: true,
+              physics: ScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 200,
                   childAspectRatio: 0.6,

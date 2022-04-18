@@ -11,7 +11,7 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
-                padding: const EdgeInsets.only(top: 50, bottom: 15),
+                padding: const EdgeInsets.only(top: 50,),
                 alignment: Alignment.center,
                 child: const Text(
                   'Profile',
@@ -22,14 +22,14 @@ class ProfileScreen extends StatelessWidget {
                 )),
             Container(
               padding: const EdgeInsets.only(
-                  top: 10, left: 15, right: 15, bottom: 25),
+                  top: 10, left: 15, right: 15,),
               child: Image.asset('assets/images/profile.png'),
             ),
             Container(
               padding: EdgeInsets.all(20),
               alignment: Alignment.center,
               child: const Text(
-                'Welcome \n \n MR/ Hassan Mohamed',
+                'Welcome  \n MR/ Hassan Mohamed',
                 style: TextStyle(
                     color: Colors.blue,
                     fontSize: 25,
