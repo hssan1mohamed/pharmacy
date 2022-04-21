@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pharmacy/moduels/home_test.dart';
 import 'package:pharmacy/moduels/home/home.dart';
 import 'package:pharmacy/moduels/on_boarding/on_boarding_screen.dart';
 import 'package:pharmacy/moduels/profile/profile.dart';
