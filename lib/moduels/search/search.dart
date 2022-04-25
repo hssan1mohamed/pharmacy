@@ -58,20 +58,18 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Column(
-                    children: const [
+                    children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(
-                          Icons.search_off,
-                          size: 160,
-                        ),
-                      ),
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset('assets/images/search.png')),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           'No results found,\nPlease try different keyword',
                           style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.w600),
+                              color: Colors.cyan,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600),
                         ),
                       ),
                     ],
