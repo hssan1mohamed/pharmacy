@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pharmacy/shaerd/provider/provider.dart';
 import 'package:provider/provider.dart';
+
 class HomeTest extends StatelessWidget {
   const HomeTest({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +28,14 @@ class HomeTest extends StatelessWidget {
         ),
       );
     }
+
     IndexedWidgetBuilder itemBuilder;
 
     return Scaffold(
-      appBar:  AppBar(
+      appBar: AppBar(
           backgroundColor: Colors.white,
           title: const Text(
-            'Abo El Ezz ',
+            'Pharmacy',
             style: TextStyle(
                 fontSize: 25, fontWeight: FontWeight.bold, color: Colors.cyan),
           ),
@@ -43,13 +44,14 @@ class HomeTest extends StatelessWidget {
         shrinkWrap: true,
         physics: BouncingScrollPhysics(),
         children: [
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           CarouselSlider(
             items: [
               container(imgs[0]),
               container(imgs[1]),
               container(imgs[2]),
-
             ],
             //Slider Container properties
             options: CarouselOptions(
@@ -90,21 +92,13 @@ class HomeTest extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Grad(),
           ),
-
-
-
-
-
-
-
-
-
         ],
       ),
     );
   }
 }
-Widget itemName (){
+
+Widget itemName() {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: SingleChildScrollView(
@@ -116,120 +110,119 @@ Widget itemName (){
             height: 50,
             width: 50,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.cyan
-            ),
+                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
             child: Center(
-              child: Text('add',style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-              ),),
+              child: Text(
+                'add',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
             ),
-
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           Container(
             height: 50,
             width: 50,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.cyan
-            ),
+                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
             child: Center(
-              child: Text('add',style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-              ),),
+              child: Text(
+                'add',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
             ),
-
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           Container(
             height: 50,
             width: 50,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.cyan
-            ),
+                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
             child: Center(
-              child: Text('add',style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-              ),),
+              child: Text(
+                'add',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
             ),
-
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           Container(
             height: 50,
             width: 50,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.cyan
-            ),
+                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
             child: Center(
-              child: Text('add',style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-              ),),
+              child: Text(
+                'add',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
             ),
-
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           Container(
             height: 50,
             width: 50,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.cyan
-            ),
+                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
             child: Center(
-              child: Text('add',style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-              ),),
+              child: Text(
+                'add',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
             ),
-
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           Container(
             height: 50,
             width: 50,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.cyan
-            ),
+                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
             child: Center(
-              child: Text('add',style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-              ),),
+              child: Text(
+                'add',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
             ),
-
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           Container(
             height: 50,
             width: 50,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.cyan
-            ),
+                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
             child: Center(
-              child: Text('add',style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-              ),),
+              child: Text(
+                'add',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
             ),
-
           ),
         ],
       ),
     ),
   );
 }
-Widget Grad (){
-  return Consumer<MyProvider>(builder: (context,myProvider,child){
+
+Widget Grad() {
+  return Consumer<MyProvider>(builder: (context, myProvider, child) {
     return GridView.builder(
         physics: ScrollPhysics(),
         shrinkWrap: true,
@@ -241,134 +234,127 @@ Widget Grad (){
         itemCount: 8,
         itemBuilder: (BuildContext ctx, index) {
           return Container(
-            height: 100,
-            width: 100,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black12,
-                      spreadRadius: 1,
-                      blurRadius: 8,
-                      offset: Offset(0,4)
-                  )
-                ]
-
-            ),
-            child: Stack(children: [
-              Column(
+              height: 100,
+              width: 100,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12,
+                        spreadRadius: 1,
+                        blurRadius: 8,
+                        offset: Offset(0, 4))
+                  ]),
+              child: Stack(
                 children: [
-                  Container(
-                    height: 100,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20)
-                        ),
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/tes.png'),
-                            fit: BoxFit.cover
-                        )
-                    ),
-                  ),
-                  // Image.asset('assets/images/img1.jpg',fit: BoxFit.cover,),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.all(10),
-                    child: const Text(
-                      "Name",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-
-
-
-                        children: [
-                          Spacer(),
-                          InkWell(
-                            child: Container(
-                              height: 30,
-                              width: 20,
-
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.cyan,
-                              ),
-                              child: Icon(Icons.remove,size: 18,color: Colors.white,),
-                            ),
-                            onTap: (){},
-                          ),
-                          Spacer(),
-                          Text('1',style: TextStyle(
-                              fontWeight: FontWeight.bold
-                          ),),
-                          Spacer(),
-                          InkWell(
-                            child: Container(
-                              height: 30,
-                              width: 20,
-
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.cyan,
-                              ),
-                              child: Icon(Icons.add,size: 18,color: Colors.white,),
-                            ),
-                            onTap: (){
-
-                            },
-                          ),
-                          Spacer(),
-                          InkWell(
-                            child: Container(
-                              height: 30,
-                              width: 20,
-
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.white,
-                              ),
-                              child: Icon(Icons.shopping_cart,size: 20,),
-                            ),
-                            onTap: (){},
-                          ),
-                          Spacer()
-
-
-
-
-                        ],
+                  Column(
+                    children: [
+                      Container(
+                        height: 100,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20)),
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/drug.png'),
+                                fit: BoxFit.fill)),
                       ),
-                    ),
+                      // Image.asset('assets/images/img1.jpg',fit: BoxFit.cover,),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: const EdgeInsets.all(10),
+                        child: const Text(
+                          "Name",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Spacer(),
+                              InkWell(
+                                child: Container(
+                                  height: 30,
+                                  width: 20,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Colors.cyan,
+                                  ),
+                                  child: Icon(
+                                    Icons.remove,
+                                    size: 18,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onTap: () {},
+                              ),
+                              Spacer(),
+                              Text(
+                                '1',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Spacer(),
+                              InkWell(
+                                child: Container(
+                                  height: 30,
+                                  width: 20,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Colors.cyan,
+                                  ),
+                                  child: Icon(
+                                    Icons.add,
+                                    size: 18,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onTap: () {},
+                              ),
+                              Spacer(),
+                              InkWell(
+                                child: Container(
+                                  height: 30,
+                                  width: 20,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Colors.white,
+                                  ),
+                                  child: Icon(
+                                    Icons.shopping_cart,
+                                    size: 20,
+                                  ),
+                                ),
+                                onTap: () {},
+                              ),
+                              Spacer()
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            myProvider.ChangeFavIcon();
+                          },
+                          icon: Icon(
+                            myProvider.nameIcon,
+                            color: Colors.red,
+                          ))
+                    ],
                   )
-
-
                 ],
-              ),
-              Row(mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(onPressed: (){
-                  myProvider.ChangeFavIcon();
-                }, icon: Icon(
-                  myProvider.nameIcon,color: Colors.red,
-                ))
-              ],
-              )
-            ],)
-          );
-        }
-    );
+              ));
+        });
   });
 }
-
-
-

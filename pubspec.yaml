@@ -68,6 +68,10 @@ flutter:
     - assets/images/img1.jpg
     - assets/images/tes.png
     - assets/images/profile.png
+    - assets/images/Favorite.png
+    - assets/images/drug.png
+    - assets/images/cart.png
+    - assets/images/search.png
 
 
 
