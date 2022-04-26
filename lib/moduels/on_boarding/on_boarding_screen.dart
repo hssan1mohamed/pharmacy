@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacy/layout/home_layout.dart';
+import 'package:pharmacy/moduels/sign_in/sign_in.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 
@@ -82,7 +83,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
                 TextButton(
                     onPressed: (){
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeLayout()),
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>LoginScreen()),
                               (route)=>false
                       );
 
@@ -108,7 +109,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   backgroundColor: Colors.cyan,
                   onPressed: () {
                     if (isLast) {
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeLayout()),
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>LoginScreen()),
                               (route)=>false
                       );
 
