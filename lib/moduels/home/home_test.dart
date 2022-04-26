@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pharmacy/shaerd/provider/provider.dart';
@@ -343,14 +344,11 @@ Widget Grad() {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      IconButton(
-                          onPressed: () {
-                            myProvider.ChangeFavIcon();
-                          },
-                          icon: Icon(
-                            myProvider.nameIcon,
-                            color: Colors.red,
-                          ))
+                      FavoriteButton(
+                        valueChanged: (){},
+                        iconSize: 45,
+                      ),
+
                     ],
                   )
                 ],
