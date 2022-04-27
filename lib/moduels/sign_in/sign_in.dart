@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
       if (!users.containsKey(name)) {
         return 'User not exists';
       }
-   return 'jbj';
+   return '';
     });
   }
   @override

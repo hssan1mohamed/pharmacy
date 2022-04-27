@@ -3,6 +3,7 @@ import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pharmacy/shaerd/provider/provider.dart';
+import 'package:pharmacy/widgets/product.dart';
 import 'package:provider/provider.dart';
 
 class HomeTest extends StatelessWidget {
@@ -31,6 +32,7 @@ class HomeTest extends StatelessWidget {
     }
 
     IndexedWidgetBuilder itemBuilder;
+    Size size =MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
@@ -228,131 +230,91 @@ Widget Grad() {
         physics: ScrollPhysics(),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 2 / 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20),
+            maxCrossAxisExtent: 220,
+            childAspectRatio: 1.6 / 2,
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 5),
         itemCount: 8,
         itemBuilder: (BuildContext ctx, index) {
-          return Container(
-              height: 100,
-              width: 100,
+          return Card(
+            shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide(color: Colors.cyan)),
+            child: Container(
+              //   padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black12,
-                        spreadRadius: 1,
-                        blurRadius: 8,
-                        offset: Offset(0, 4))
-                  ]),
-              child: Stack(
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        height: 100,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20)),
-                            image: DecorationImage(
-                                image: AssetImage('assets/images/drug.png'),
-                                fit: BoxFit.fill)),
-                      ),
-                      // Image.asset('assets/images/img1.jpg',fit: BoxFit.cover,),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.all(10),
-                        child: const Text(
-                          "Name",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Spacer(),
-                              InkWell(
-                                child: Container(
-                                  height: 30,
-                                  width: 20,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Colors.cyan,
-                                  ),
-                                  child: Icon(
-                                    Icons.remove,
-                                    size: 18,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                onTap: () {},
-                              ),
-                              Spacer(),
-                              Text(
-                                '1',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Spacer(),
-                              InkWell(
-                                child: Container(
-                                  height: 30,
-                                  width: 20,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Colors.cyan,
-                                  ),
-                                  child: Icon(
-                                    Icons.add,
-                                    size: 18,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                onTap: () {},
-                              ),
-                              Spacer(),
-                              InkWell(
-                                child: Container(
-                                  height: 30,
-                                  width: 20,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Colors.white,
-                                  ),
-                                  child: Icon(
-                                    Icons.shopping_cart,
-                                    size: 20,
-                                  ),
-                                ),
-                                onTap: () {},
-                              ),
-                              Spacer()
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      FavoriteButton(
-                        valueChanged: (){},
-                        iconSize: 45,
-                      ),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: SingleChildScrollView(
+                child: Column(
 
-                    ],
-                  )
-                ],
-              ));
+                  children: [
+               SizedBox(height: 5,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FavoriteButton(
+                          valueChanged: (){},
+                          iconSize: 45,
+                        ),
+                        SizedBox(width: 10,)
+
+                      ],
+                    ),
+                    //  SizedBox(height: 5,),
+                    Container(
+                      width: 100,
+                      height: 80,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5QiueF_O6Y5HXFJRvxwUstyl3lfEeIImfFw&usqp=CAU'),
+                              fit: BoxFit.fill)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: const [
+                          Expanded(
+                              child: Text(
+                                'EGP' '15',
+                                style: TextStyle(
+                                    color: Colors.red, fontWeight: FontWeight.bold),
+                                textDirection: TextDirection.ltr,
+                              )),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'hhh',
+                              textDirection: TextDirection.rtl,
+                              maxLines: 1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Divider(
+                      color: Color(0xFF13b1fb),
+                    ),
+                    RaisedButton(
+                      onPressed: () async {},
+                      child: const Text(
+                        'Add to cart',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      color: Colors.cyan,
+                      shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(color: Colors.cyan)),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
         });
   });
 }
+
+
+
