@@ -32,7 +32,7 @@ class _CartScreenState extends State<CartScreen> {
                   Padding(
                     padding: EdgeInsets.all(25),
                     child: Text(
-                      'The Cart is empty \n \nGo to shopping ',
+                      'The Cart is empty \nGo to shopping ',
                       style: TextStyle(
                           color: Colors.cyan,
                           fontSize: 25,
