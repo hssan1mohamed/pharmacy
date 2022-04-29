@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pharmacy/moduels/product_details/product_details.dart';
 import 'package:pharmacy/shaerd/provider/provider.dart';
 import 'package:pharmacy/widgets/product.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +33,7 @@ class HomeTest extends StatelessWidget {
     }
 
     IndexedWidgetBuilder itemBuilder;
-    Size size =MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
@@ -102,6 +103,21 @@ class HomeTest extends StatelessWidget {
 }
 
 Widget itemName() {
+  Widget cont() {
+    return Container(
+      height: 50,
+      width: 50,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20), color: Colors.cyan),
+      child: Center(
+        child: Text(
+          'add',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
+
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: SingleChildScrollView(
@@ -109,115 +125,31 @@ Widget itemName() {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
-            child: Center(
-              child: Text(
-                'add',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
+          cont(),
           SizedBox(
             width: 10,
           ),
-          Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
-            child: Center(
-              child: Text(
-                'add',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
+          cont(),
           SizedBox(
             width: 10,
           ),
-          Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
-            child: Center(
-              child: Text(
-                'add',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
+          cont(),
           SizedBox(
             width: 10,
           ),
-          Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
-            child: Center(
-              child: Text(
-                'add',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
+          cont(),
           SizedBox(
             width: 10,
           ),
-          Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
-            child: Center(
-              child: Text(
-                'add',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
+          cont(),
           SizedBox(
             width: 10,
           ),
-          Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
-            child: Center(
-              child: Text(
-                'add',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
+          cont(),
           SizedBox(
             width: 10,
           ),
-          Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: Colors.cyan),
-            child: Center(
-              child: Text(
-                'add',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
+          cont(),
         ],
       ),
     ),
@@ -247,41 +179,69 @@ Widget Grad() {
               ),
               child: SingleChildScrollView(
                 child: Column(
-
                   children: [
-               SizedBox(height: 5,),
+                    SizedBox(
+                      height: 5,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         FavoriteButton(
-                          valueChanged: (){},
+                          valueChanged: (x) {
+                            null;
+                          },
                           iconSize: 45,
                         ),
-                        SizedBox(width: 10,)
-
+                        SizedBox(
+                          width: 10,
+                        )
                       ],
                     ),
                     //  SizedBox(height: 5,),
-                    Container(
-                      width: 100,
-                      height: 80,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5QiueF_O6Y5HXFJRvxwUstyl3lfEeIImfFw&usqp=CAU'),
-                              fit: BoxFit.fill)),
+
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                                transitionDuration: Duration(seconds: 1),
+                                transitionsBuilder:
+                                    (context, animation, animationTime, child) {
+                                  animation = CurvedAnimation(
+                                      parent: animation,
+                                      curve: Curves.bounceInOut);
+                                  return ScaleTransition(
+                                    scale: animation,
+                                    alignment: Alignment.center,
+                                    child: child,
+                                  );
+                                },
+                                pageBuilder:
+                                    (context, animation, animationTime) {
+                                  return product_details();
+                                }));
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 80,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/drug.png'),
+                                fit: BoxFit.fill)),
+                      ),
                     ),
+
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: const [
                           Expanded(
                               child: Text(
-                                'EGP' '15',
-                                style: TextStyle(
-                                    color: Colors.red, fontWeight: FontWeight.bold),
-                                textDirection: TextDirection.ltr,
-                              )),
+                            'EGP' '15',
+                            style: TextStyle(
+                                color: Colors.red, fontWeight: FontWeight.bold),
+                            textDirection: TextDirection.ltr,
+                          )),
                           Expanded(
                             flex: 1,
                             child: Text(
@@ -315,6 +275,3 @@ Widget Grad() {
         });
   });
 }
-
-
-
