@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:pharmacy/layout/home_layout.dart';
 
-const users = const {
+const users = {
   'mahgouba4@gmail.com': '12345',
+  'hassan@yahoo.com': '12345',
   'hunter@gmail.com': 'hunter',
 };
 
@@ -36,9 +37,10 @@ class LoginScreen extends StatelessWidget {
       if (!users.containsKey(name)) {
         return 'User not exists';
       }
-   return '';
+      return '';
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(

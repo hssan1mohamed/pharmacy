@@ -30,7 +30,7 @@ class _product_detailsState extends State<product_details> {
             height: height * 0.3,
             width: double.infinity,
             alignment: Alignment.center,
-            child: Image.asset('assets/images/drug.png'),
+            child: Hero(tag: 'h', child: Image.asset('assets/images/drug.png')),
           ),
           Container(
             height: height * 0.5998,
