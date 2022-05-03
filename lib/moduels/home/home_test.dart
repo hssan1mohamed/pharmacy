@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:favorite_button/favorite_button.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pharmacy/moduels/product_details/product_details.dart';
@@ -200,26 +202,15 @@ Widget Grad() {
                     //  SizedBox(height: 5,),
 
                     InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                                transitionDuration: Duration(seconds: 1),
-                                transitionsBuilder:
-                                    (context, animation, animationTime, child) {
-                                  animation = CurvedAnimation(
-                                      parent: animation,
-                                      curve: Curves.bounceInOut);
-                                  return ScaleTransition(
-                                    scale: animation,
-                                    alignment: Alignment.center,
-                                    child: child,
-                                  );
-                                },
-                                pageBuilder:
-                                    (context, animation, animationTime) {
-                                  return product_details();
-                                }));
+                      onTap: () async {
+                        // Firebase.initializeApp();
+                        // var inst = await FirebaseFirestore.instance
+                        //     .collection('hassan')
+                        //     .doc('b3APkKUKJnI8EENNbV5')
+                        //     .set({'ali': '111'});
+
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => product_details()));
                       },
                       child: Container(
                         width: 100,

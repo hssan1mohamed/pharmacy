@@ -1,12 +1,8 @@
-
-
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../moduels/product_details/product_details.dart';
 import '../provider/provider.dart';
-
-
 
 Widget prodectWidget() =>
     Consumer<MyProvider>(builder: (context, myProvider, child) {
@@ -57,8 +53,8 @@ Widget prodectWidget() =>
                               context,
                               PageRouteBuilder(
                                   transitionDuration: Duration(seconds: 1),
-                                  transitionsBuilder:
-                                      (context, animation, animationTime, child) {
+                                  transitionsBuilder: (context, animation,
+                                      animationTime, child) {
                                     animation = CurvedAnimation(
                                         parent: animation,
                                         curve: Curves.bounceInOut);
@@ -89,11 +85,12 @@ Widget prodectWidget() =>
                           children: const [
                             Expanded(
                                 child: Text(
-                                  'EGP' '15',
-                                  style: TextStyle(
-                                      color: Colors.red, fontWeight: FontWeight.bold),
-                                  textDirection: TextDirection.ltr,
-                                )),
+                              'EGP' '15',
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold),
+                              textDirection: TextDirection.ltr,
+                            )),
                             Expanded(
                               flex: 1,
                               child: Text(
@@ -126,6 +123,3 @@ Widget prodectWidget() =>
             );
           });
     });
-
-
-

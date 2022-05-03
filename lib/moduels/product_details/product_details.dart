@@ -24,7 +24,6 @@ class _product_detailsState extends State<product_details> {
                 color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
           )),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
         child: Column(children: [
           Container(
             padding: EdgeInsets.all(25),
@@ -33,78 +32,75 @@ class _product_detailsState extends State<product_details> {
             alignment: Alignment.center,
             child: Hero(tag: 'h', child: Image.asset('assets/images/drug.png')),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: height * 0.5998,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                // color: Colors.cyan,
-                border: Border.all(color: Colors.cyan),
-                borderRadius: BorderRadius.circular(30)
-
-              ),
-              alignment: Alignment.topRight,
-              child: SingleChildScrollView(
-                padding: EdgeInsets.all(30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    ListTile(
-                      trailing: Text(
-                        'اسبرين ',
-                        style: const TextStyle(
-                            color: Colors.cyan,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold),
-                      ),
+          Container(
+            height: height * 0.5998,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              // color: Colors.cyan,
+              border: Border.all(color: Colors.cyan),
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(35), topRight: Radius.circular(35)),
+            ),
+            alignment: Alignment.topRight,
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  ListTile(
+                    trailing: Text(
+                      'اسبرين ',
+                      style: const TextStyle(
+                          color: Colors.cyan,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
                     ),
-                    Divider(),
-                    ListTile(
-                      title: Text(
-                        '15 \$ ',
-                        style: const TextStyle(
-                            color: Colors.red,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      trailing: Text(
-                        'السعر ',
-                        style: const TextStyle(
-                            color: Colors.cyan,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text(
+                      '15 \$ ',
+                      style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
                     ),
-                    Divider(),
-                    RaisedButton(
-                      color: Colors.white,
-                      shape: Border(),
-                      onPressed: () {},
-                      child: Text(
-                        'اضف الى العربة ',
-                        style: const TextStyle(
-                            color: Colors.cyan,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
+                    trailing: Text(
+                      'السعر ',
+                      style: const TextStyle(
+                          color: Colors.cyan,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
                     ),
-                    Divider(),
-                    ListTile(
-                      trailing: Text(
-                        'التفاصيل ',
-                        style: const TextStyle(
-                            color: Colors.cyan,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
+                  ),
+                  Divider(),
+                  RaisedButton(
+                    color: Colors.white,
+                    shape: Border(),
+                    onPressed: () {},
+                    child: Text(
+                      'اضف الى العربة ',
+                      style: const TextStyle(
+                          color: Colors.cyan,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
                     ),
-                    Divider(),
-                    Text(
-                        'لارترترترتؤاءالؤالمنتمنتمن\n رلرتارارلاؤلا\n الؤءابيالر ىلارءلبؤاللاي\n',
-                        style: TextStyle(color: Colors.cyan, fontSize: 18)),
-                  ],
-                ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    trailing: Text(
+                      'التفاصيل ',
+                      style: const TextStyle(
+                          color: Colors.cyan,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Divider(),
+                  Text(
+                      'لارترترترتؤاءالؤالمنتمنتمن\n رلرتارارلاؤلا\n الؤءابيالر ىلارءلبؤاللاي\n',
+                      style: TextStyle(color: Colors.cyan, fontSize: 18)),
+                ],
               ),
             ),
           ),
