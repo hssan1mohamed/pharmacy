@@ -180,79 +180,81 @@ Widget Grad() {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                child: InkWell(
+                  onTap: () async {
+              Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => product_details()));
+              },
+                  child: Container(
+                    child: Column(
                       children: [
-                        FavoriteButton(
-                          valueChanged: (x) {
-                            null;
-                          },
-                          iconSize: 45,
-                        ),
                         SizedBox(
-                          width: 10,
+                          height: 5,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            FavoriteButton(
+                              valueChanged: (x) {
+                                null;
+                              },
+                              iconSize: 45,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            )
+                          ],
+                        ),
+                        //  SizedBox(height: 5,),
+
+                        Container(
+                          width: 100,
+                          height: 80,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage('assets/images/drug.png'),
+                                  fit: BoxFit.fill)),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: const [
+                              Expanded(
+                                  child: Text(
+                                'EGP' '15',
+                                style: TextStyle(
+                                    color: Colors.red, fontWeight: FontWeight.bold),
+                                textDirection: TextDirection.ltr,
+                              )),
+                              Expanded(
+                                flex: 1,
+                                child: Text(
+                                  'اسبرين',
+                                  textDirection: TextDirection.rtl,
+                                  maxLines: 1,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          color: Color(0xFF13b1fb),
+                        ),
+                        RaisedButton(
+                          onPressed: () async {},
+                          child: const Text(
+                            'اضف الى العربة',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          color: Colors.cyan,
+                          shape: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(color: Colors.cyan)),
                         )
                       ],
                     ),
-                    //  SizedBox(height: 5,),
-
-                    InkWell(
-                      onTap: () async {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => product_details()));
-                      },
-                      child: Container(
-                        width: 100,
-                        height: 80,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('assets/images/drug.png'),
-                                fit: BoxFit.fill)),
-                      ),
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: const [
-                          Expanded(
-                              child: Text(
-                            'EGP' '15',
-                            style: TextStyle(
-                                color: Colors.red, fontWeight: FontWeight.bold),
-                            textDirection: TextDirection.ltr,
-                          )),
-                          Expanded(
-                            flex: 1,
-                            child: Text(
-                              'اسبرين',
-                              textDirection: TextDirection.rtl,
-                              maxLines: 1,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Divider(
-                      color: Color(0xFF13b1fb),
-                    ),
-                    RaisedButton(
-                      onPressed: () async {},
-                      child: const Text(
-                        'اضف الى العربة',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      color: Colors.cyan,
-                      shape: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: Colors.cyan)),
-                    )
-                  ],
+                  ),
                 ),
               ),
             ),
