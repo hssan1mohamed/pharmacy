@@ -41,7 +41,7 @@ class HomeTest extends StatelessWidget {
       appBar: AppBar(
           backgroundColor: Colors.white,
           title: const Text(
-            'Pharmacy',
+            'الصيدلية',
             style: TextStyle(
                 fontSize: 25, fontWeight: FontWeight.bold, color: Colors.cyan),
           ),
@@ -72,10 +72,10 @@ class HomeTest extends StatelessWidget {
             ),
           ),
           Container(
-            alignment: Alignment.centerLeft,
+            alignment: Alignment.centerRight,
             padding: const EdgeInsets.all(15),
             child: const Text(
-              "Catigores",
+              "الاقسام",
               style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -84,10 +84,10 @@ class HomeTest extends StatelessWidget {
           ),
           itemName(),
           Container(
-            alignment: Alignment.centerLeft,
+            alignment: Alignment.centerRight,
             padding: const EdgeInsets.all(15),
             child: const Text(
-              "all product",
+              "كل المنتجات",
               style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -203,12 +203,6 @@ Widget Grad() {
 
                     InkWell(
                       onTap: () async {
-                        // Firebase.initializeApp();
-                        // var inst = await FirebaseFirestore.instance
-                        //     .collection('hassan')
-                        //     .doc('b3APkKUKJnI8EENNbV5')
-                        //     .set({'ali': '111'});
-
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => product_details()));
                       },
@@ -236,7 +230,7 @@ Widget Grad() {
                           Expanded(
                             flex: 1,
                             child: Text(
-                              'hhh',
+                              'اسبرين',
                               textDirection: TextDirection.rtl,
                               maxLines: 1,
                             ),
@@ -250,7 +244,7 @@ Widget Grad() {
                     RaisedButton(
                       onPressed: () async {},
                       child: const Text(
-                        'Add to cart',
+                        'اضف الى العربة',
                         style: TextStyle(color: Colors.white),
                       ),
                       color: Colors.cyan,

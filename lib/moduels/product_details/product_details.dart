@@ -66,7 +66,7 @@ class _product_detailsState extends State<product_details> {
                           fontWeight: FontWeight.bold),
                     ),
                     trailing: Text(
-                      'السعر ',
+                      '-:السعر ',
                       style: const TextStyle(
                           color: Colors.cyan,
                           fontSize: 20,
@@ -75,21 +75,20 @@ class _product_detailsState extends State<product_details> {
                   ),
                   Divider(),
                   RaisedButton(
-                    color: Colors.white,
-                    shape: Border(),
-                    onPressed: () {},
-                    child: Text(
-                      'اضف الى العربة ',
-                      style: const TextStyle(
-                          color: Colors.cyan,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                    onPressed: () async {},
+                    child: const Text(
+                      'Add to cart',
+                      style: TextStyle(color: Colors.white),
                     ),
+                    color: Colors.cyan,
+                    shape: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.cyan)),
                   ),
                   Divider(),
                   ListTile(
                     trailing: Text(
-                      'التفاصيل ',
+                      '-:التفاصيل ',
                       style: const TextStyle(
                           color: Colors.cyan,
                           fontSize: 20,

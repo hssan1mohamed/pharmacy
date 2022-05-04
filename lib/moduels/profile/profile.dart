@@ -1,8 +1,65 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmacy/moduels/sign_in/sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/foundation.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  showAlertDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("الغاء"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("تسجيل الخروج"),
+      onPressed: () async {
+        try {
+          await FirebaseAuth.instance.signOut();
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.remove("islogin");
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => LoginScreen()));
+        } catch (e) {
+          print(e);
+        }
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(
+        "تسحيل الخروج",
+        textDirection: TextDirection.rtl,
+      ),
+      content: Text(
+        "هل تريد تسجيل الخروج من البرنامج؟",
+        textDirection: TextDirection.rtl,
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -73,7 +130,9 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             TextButton(
-                onPressed: () {},
+                onPressed: () async {
+                  showAlertDialog(context);
+                },
                 child: const Text(
                   'Sign Out',
                   style: TextStyle(

@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:pharmacy/layout/home_layout.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-const users = {
-  'mahgouba4@gmail.com': '12345',
-  'hassan@yahoo.com': '12345',
-  'hunter@gmail.com': 'hunter',
-};
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatelessWidget {
   Duration get loginTime => Duration(milliseconds: 2250);
@@ -64,10 +59,10 @@ class LoginScreen extends StatelessWidget {
   Future<String> _recoverPassword(String name) {
     debugPrint('Name: $name');
     return Future.delayed(loginTime).then((_) {
-      if (!users.containsKey(name)) {
-        return 'User not exists';
-      }
-      return '';
+      // if (!users.containsKey(name)) {
+      //   return 'User not exists';
+      // }
+      return 'It is not working now';
     });
   }
 
@@ -78,7 +73,9 @@ class LoginScreen extends StatelessWidget {
       logo: AssetImage('assets/images/Favorite.png'),
       onLogin: _authUser,
       onSignup: _signupUser,
-      onSubmitAnimationCompleted: () {
+      onSubmitAnimationCompleted: () async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setBool("islogin", true);
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => HomeLayout(),
         ));

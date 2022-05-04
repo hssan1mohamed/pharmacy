@@ -9,16 +9,15 @@ import 'package:pharmacy/shaerd/provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() async {
+import 'layout/home_layout.dart';
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool? islogin = prefs.getBool("islogin");
 
-  // Obtain shared preferences.
-//final prefs = await SharedPreferences.getInstance();
-
-// Save an integer value to 'counter' key.
-//await prefs.setBool('isSign',false );
+  runApp(islogin == null || false ? const MyApp() : const MyApp1());
 }
 
 class MyApp extends StatelessWidget {
@@ -27,8 +26,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // final prefs = await SharedPreferences.getInstance();
-    //final bool ?isSign =await prefs.getBool('isSign');
     return ChangeNotifierProvider(
       create: (context) => MyProvider(),
       child: MaterialApp(
@@ -38,6 +35,25 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.cyan,
         ),
         home: const OnBoardingScreen(),
+      ),
+    );
+  }
+}
+
+class MyApp1 extends StatelessWidget {
+  const MyApp1({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => MyProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'pharmacy',
+        theme: ThemeData(
+          primarySwatch: Colors.cyan,
+        ),
+        home: const HomeLayout(),
       ),
     );
   }
