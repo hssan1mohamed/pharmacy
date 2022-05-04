@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:pharmacy/moduels/home/home.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pharmacy/moduels/on_boarding/on_boarding_screen.dart';
 import 'package:pharmacy/moduels/profile/profile.dart';
 import 'package:pharmacy/moduels/sign_in/sign_in.dart';
@@ -52,7 +53,16 @@ class MyApp1 extends StatelessWidget {
         title: 'pharmacy',
         theme: ThemeData(
           primarySwatch: Colors.cyan,
+          textTheme: GoogleFonts.almaraiTextTheme(Theme.of(context).textTheme),
+
         ),
+        localizationsDelegates: const [
+          GlobalCupertinoLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: const [Locale("ar","AE")],
+        locale: const Locale("ar","AE"),
         home: const HomeLayout(),
       ),
     );

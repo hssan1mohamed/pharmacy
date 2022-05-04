@@ -68,12 +68,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'Profile',
+          'الحساب',
           style: TextStyle(
               color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         padding: const EdgeInsets.only(left: 25, right: 25),
         child: Column(
           children: [
@@ -89,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: EdgeInsets.all(20),
               alignment: Alignment.center,
               child: const Text(
-                'Welcome  \n MR/ Hassan Mohamed',
+                'مرحبا  \n السيد/ حسن محمد',
                 style: TextStyle(
                     color: Colors.blue,
                     fontSize: 25,
@@ -108,21 +109,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: const [
                       ListTile(
                         leading: Icon(Icons.person),
-                        subtitle: Text('name'),
-                        title: Text('Hassan Mohamed',
+                        subtitle: Text('الاسم'),
+                        title: Text('حسن محمد',
                             style: TextStyle(color: Colors.cyan, fontSize: 18)),
                       ),
                       Divider(),
                       ListTile(
                         leading: Icon(Icons.location_city),
-                        subtitle: Text('address'),
-                        title: Text('Qena - Abnod',
+                        subtitle: Text('العنوان'),
+                        title: Text('قنا - ابنود',
                             style: TextStyle(color: Colors.cyan, fontSize: 18)),
                       ),
                       Divider(),
                       ListTile(
                         leading: Icon(Icons.phone),
-                        subtitle: Text('phone'),
+                        subtitle: Text('الهاتف'),
                         title: Text('01114737152',
                             style: TextStyle(color: Colors.cyan, fontSize: 18)),
                       )
@@ -134,12 +135,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   showAlertDialog(context);
                 },
                 child: const Text(
-                  'Sign Out',
+                  'تسجيل الخروج',
                   style: TextStyle(
                       color: Colors.cyan,
                       fontSize: 25,
                       fontWeight: FontWeight.bold),
-                ))
+                )),
+            SizedBox(height: 10,)
           ],
         ),
       ),

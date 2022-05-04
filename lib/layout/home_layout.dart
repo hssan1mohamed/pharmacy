@@ -17,11 +17,11 @@ class HomeLayout extends StatelessWidget {
             myProvider.changeBottom(index);
           },
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.favorite_outline_sharp),label: 'Favorite'),
-            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),label: 'Cart'),
-            BottomNavigationBarItem(icon: Icon(Icons.search),label: 'Search'),
-            BottomNavigationBarItem(icon: Icon(Icons.person),label: 'Account'),
+            BottomNavigationBarItem(icon: Icon(Icons.home),label: 'الرئيسية'),
+            BottomNavigationBarItem(icon: Icon(Icons.favorite_outline_sharp),label: 'المفضلة'),
+            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),label: 'العربة'),
+            BottomNavigationBarItem(icon: Icon(Icons.search),label: 'البحث'),
+            BottomNavigationBarItem(icon: Icon(Icons.person),label: 'الحساب'),
           ],
 
 

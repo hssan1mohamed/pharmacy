@@ -17,7 +17,7 @@ class _CartScreenState extends State<CartScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: const Text(
-            'My Cart',
+            'عربة التسوق',
             style: TextStyle(
                 color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
           ),
@@ -32,7 +32,7 @@ class _CartScreenState extends State<CartScreen> {
                   Padding(
                     padding: EdgeInsets.all(25),
                     child: Text(
-                      'The Cart is empty \nGo to shopping ',
+                      'العربة فارغة  \nآذهب للتسوق آلآن ',
                       style: TextStyle(
                           color: Colors.cyan,
                           fontSize: 25,
@@ -42,6 +42,7 @@ class _CartScreenState extends State<CartScreen> {
                 ],
               )
             : ListView(
+          physics: BouncingScrollPhysics(),
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(15.0),

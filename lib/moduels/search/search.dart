@@ -1,4 +1,12 @@
+
+
+import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmacy/shaerd/components/components.dart';
+import 'package:provider/provider.dart';
+
+import '../../shaerd/provider/provider.dart';
+import '../product_details/product_details.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -37,7 +45,9 @@ class _SearchScreenState extends State<SearchScreen> {
                     enabledBorder: InputBorder.none,
                     errorBorder: InputBorder.none,
                     disabledBorder: InputBorder.none,
-                    hintText: 'Search here',
+                    prefixIcon: Icon(Icons.search),
+
+                    hintText: 'البحث',
                     contentPadding: EdgeInsets.all(8)),
                 onChanged: (value) {
                   setState(() {
@@ -62,10 +72,10 @@ class _SearchScreenState extends State<SearchScreen> {
                       Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Image.asset('assets/images/search.png')),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Text(
-                          'No results found,\nPlease try different keyword',
+                          'المنتج غير موجود \nالرجاء اعادة المحاولة مجددا',
                           style: TextStyle(
                               color: Colors.cyan,
                               fontSize: 18,
@@ -90,75 +100,101 @@ class _SearchScreenState extends State<SearchScreen> {
 }
 
 Widget product() {
-  return Card(
-    shape: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(20),
-        borderSide: BorderSide(color: Colors.cyan)),
-    child: Container(
-      //   padding: EdgeInsets.all(10),
-      width: 100,
-      height: 250,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            // SizedBox(height: 5,),
-            Container(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                    onPressed: () async {},
-                    icon: const Icon(Icons.favorite_outline))),
-            //  SizedBox(height: 5,),
-            Container(
-              width: 100,
-              height: 100,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage(
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5QiueF_O6Y5HXFJRvxwUstyl3lfEeIImfFw&usqp=CAU'),
-                      fit: BoxFit.fill)),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: const [
-                  Expanded(
-                      child: Text(
-                    'EGP' + '15',
-                    style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold),
-                    textDirection: TextDirection.ltr,
-                  )),
-                  Expanded(
-                    flex: 1,
-                    child: Text(
-                      'hhh',
-                      textDirection: TextDirection.rtl,
-                      maxLines: 1,
+  return Consumer<MyProvider>(builder: (context, myProvider, child)
+  {
+    return Card(
+      shape: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide(color: Colors.cyan)),
+      child: Container(
+        //   padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: SingleChildScrollView(
+          child: InkWell(
+            onTap: () async {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => product_details()));
+            },
+            child: Container(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(width: 10,),
+                      FavoriteButton(
+                        valueChanged: (x) {
+                          null;
+                        },
+                        iconSize: 45,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      )
+                    ],
+                  ),
+                  //  SizedBox(height: 5,),
+
+                  Container(
+                    width: 100,
+                    height: 80,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('assets/images/drug.png'),
+                            fit: BoxFit.fill)),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: const [
+                        Expanded(
+                            child: Text(
+                              '15 \n جنية',
+                              maxLines: 2,
+                              style: TextStyle(
+                                  color: Colors.red, fontWeight: FontWeight.bold),
+                              textDirection: TextDirection.ltr,
+                            )),
+                        Spacer(),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            'اسبرين',
+                            textDirection: TextDirection.rtl,
+                            maxLines: 1,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+                  const Divider(
+                    color: Color(0xFF13b1fb),
+                  ),
+                  RaisedButton(
+                    onPressed: () async {},
+                    child: const Text(
+                      'اضف الى العربة',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    color: Colors.cyan,
+                    shape: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: Colors.cyan)),
+                  )
                 ],
               ),
             ),
-            const Divider(
-              color: Color(0xFF13b1fb),
-            ),
-            RaisedButton(
-              onPressed: () async {},
-              child: const Text(
-                'Add to cart',
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Colors.cyan,
-              shape: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: Colors.cyan)),
-            )
-          ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  });
 }
+
+
+

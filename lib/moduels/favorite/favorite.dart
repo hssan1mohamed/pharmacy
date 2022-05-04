@@ -21,7 +21,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: const Text(
-            'Favorite',
+            'المفضلة',
             style: TextStyle(
                 color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
           ),
@@ -32,10 +32,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   padding: const EdgeInsets.all(18.0),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(18.0),
+                      const Padding(
+                        padding: EdgeInsets.all(18.0),
                         child: Text(
-                          'The list of favorite is empty,\n \nGo to shopping',
+                          'قائمة المفضلة فارغة\n آذهب للتسوق الآن',
                           style: TextStyle(
                               color: Colors.cyan,
                               fontSize: 25,
