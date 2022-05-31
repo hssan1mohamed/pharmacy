@@ -70,9 +70,10 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterLogin(
       title: 'Pharmacy',
-      logo: AssetImage('assets/images/Favorite.png'),
+      logo: AssetImage('assets/images/profile.png'),
       onLogin: _authUser,
       onSignup: _signupUser,
+      additionalSignupFields: [],
       onSubmitAnimationCompleted: () async {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool("islogin", true);

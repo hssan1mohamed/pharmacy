@@ -26,11 +26,10 @@ Widget prodectWidget() =>
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: SingleChildScrollView(
-
                   child: InkWell(
                     onTap: () async {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => product_details()));
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => product_details()));
                     },
                     child: Container(
                       child: Column(
@@ -40,7 +39,9 @@ Widget prodectWidget() =>
                           ),
                           Row(
                             children: [
-                              SizedBox(width: 10,),
+                              SizedBox(
+                                width: 10,
+                              ),
                               FavoriteButton(
                                 valueChanged: (x) {
                                   null;
@@ -69,12 +70,13 @@ Widget prodectWidget() =>
                               children: const [
                                 Expanded(
                                     child: Text(
-                                      '15 \n جنية',
-                                      maxLines: 2,
-                                      style: TextStyle(
-                                          color: Colors.red, fontWeight: FontWeight.bold),
-                                      textDirection: TextDirection.ltr,
-                                    )),
+                                  '15 \n جنية',
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold),
+                                  textDirection: TextDirection.ltr,
+                                )),
                                 Spacer(),
                                 Expanded(
                                   flex: 1,

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class product_details extends StatefulWidget {
-  const product_details({Key? key}) : super(key: key);
+  String img;
+  String title;
+  String details;
+  String price;
+  product_details(this.title, this.details, this.img, this.price);
+  //product_details({Key? key}) : super(key: key);
 
   @override
   State<product_details> createState() => _product_detailsState();
@@ -19,22 +24,19 @@ class _product_detailsState extends State<product_details> {
               icon: Icon(Icons.arrow_back, size: 30, color: Colors.white)),
           centerTitle: true,
           title: Text(
-            'التفاصيل ',
+            widget.title,
             style: const TextStyle(
                 color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
           )),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-
-            children: [
+        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           Container(
             padding: EdgeInsets.all(25),
             height: height * 0.3,
             width: double.infinity,
             alignment: Alignment.center,
-            child: Hero(tag: 'h', child: Image.asset('assets/images/drug.png')),
+            child: Hero(tag: 'h', child: Image.network(widget.img)),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
@@ -42,10 +44,9 @@ class _product_detailsState extends State<product_details> {
               height: height * 0.5998,
               width: double.infinity,
               decoration: BoxDecoration(
-                // color: Colors.cyan,
-                border: Border.all(color: Colors.cyan),
-                borderRadius: BorderRadius.circular(20)
-              ),
+                  // color: Colors.cyan,
+                  border: Border.all(color: Colors.cyan),
+                  borderRadius: BorderRadius.circular(20)),
               alignment: Alignment.topRight,
               child: SingleChildScrollView(
                 padding: EdgeInsets.all(30),
@@ -54,7 +55,7 @@ class _product_detailsState extends State<product_details> {
                   children: [
                     ListTile(
                       title: Text(
-                        'اسبرين ',
+                        widget.title,
                         style: const TextStyle(
                             color: Colors.cyan,
                             fontSize: 25,
@@ -71,32 +72,30 @@ class _product_detailsState extends State<product_details> {
                             fontWeight: FontWeight.bold),
                       ),
                       trailing: Text(
-                        '15 \$ ',
+                        widget.price + ' جنية ',
                         style: const TextStyle(
                             color: Colors.red,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-
-
                     Divider(),
                     ListTile(
-                      title:Text(
+                      title: Text(
                         'التفاصيل / ',
                         style: const TextStyle(
                             color: Colors.cyan,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
-
                     ),
                     Divider(),
-                    Text(
-                        'لارترترترتؤاءالؤالمنتمنتمن\n رلرتارارلاؤلا\n الؤءابيالر ىلارءلبؤاللاي\n',
+                    Text(widget.details,
                         style: TextStyle(color: Colors.cyan, fontSize: 18)),
                     Divider(),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       alignment: Alignment.center,
                       child: RaisedButton(
@@ -116,7 +115,9 @@ class _product_detailsState extends State<product_details> {
               ),
             ),
           ),
-              SizedBox(height: 10,)
+          SizedBox(
+            height: 10,
+          )
         ]),
       ),
     );
