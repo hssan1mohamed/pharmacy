@@ -1,11 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:favorite_button/favorite_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class product_details extends StatefulWidget {
   String img;
+
   String title;
   String details;
   String price;
-  product_details(this.title, this.details, this.img, this.price);
+  product_details(
+    this.title,
+    this.details,
+    this.img,
+    this.price,
+  );
   //product_details({Key? key}) : super(key: key);
 
   @override
@@ -47,7 +57,7 @@ class _product_detailsState extends State<product_details> {
                   // color: Colors.cyan,
                   border: Border.all(color: Colors.cyan),
                   borderRadius: BorderRadius.circular(20)),
-              alignment: Alignment.topRight,
+              alignment: Alignment.topLeft,
               child: SingleChildScrollView(
                 padding: EdgeInsets.all(30),
                 child: Column(
@@ -66,6 +76,7 @@ class _product_detailsState extends State<product_details> {
                     ListTile(
                       title: Text(
                         'السعر /  ',
+                        textDirection: TextDirection.rtl,
                         style: const TextStyle(
                             color: Colors.cyan,
                             fontSize: 20,
@@ -82,7 +93,8 @@ class _product_detailsState extends State<product_details> {
                     Divider(),
                     ListTile(
                       title: Text(
-                        'التفاصيل / ',
+                        'التفاصيل /',
+                        textDirection: TextDirection.rtl,
                         style: const TextStyle(
                             color: Colors.cyan,
                             fontSize: 20,
@@ -91,6 +103,7 @@ class _product_detailsState extends State<product_details> {
                     ),
                     Divider(),
                     Text(widget.details,
+                        textDirection: TextDirection.rtl,
                         style: TextStyle(color: Colors.cyan, fontSize: 18)),
                     Divider(),
                     SizedBox(
