@@ -28,6 +28,7 @@ class MyProvider extends ChangeNotifier{
     SearchScreen(),
     ProfileScreen(),
 
+
   ];
 
   void changeBottom(int index){

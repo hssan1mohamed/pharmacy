@@ -28,7 +28,8 @@ class LoginScreen extends StatelessWidget {
   }
 
   Future<String?> _signupUser(SignupData data) {
-    debugPrint('Signup Name: ${data.name}, Password: ${data.password}');
+    debugPrint(
+        'Signup Name: ${data.name}, Password: ${data.password},${data.additionalSignupData}');
     return Future.delayed(loginTime).then((_) async {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
@@ -38,10 +39,13 @@ class LoginScreen extends StatelessWidget {
 
         await FirebaseFirestore.instance
             .collection('users')
-            .doc(data.name)
+            .doc(FirebaseAuth.instance.currentUser!.uid.toString())
             .set({
           'email': data.name,
           'Password': data.password,
+          'name': data.additionalSignupData!['nameUser'],
+          'phone': data.additionalSignupData!['phone'],
+          'address': data.additionalSignupData!['address'],
         });
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
@@ -69,11 +73,54 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      title: 'Pharmacy',
+      title: 'الصيدلية',
       logo: AssetImage('assets/images/profile.png'),
       onLogin: _authUser,
+      hideForgotPasswordButton: true,
+      userType: LoginUserType.email,
+      additionalSignupFields: [
+        UserFormField(
+          keyName: 'nameUser',
+          defaultValue: '',
+          displayName: 'الاسم',
+          icon: Icon(Icons.person),
+          fieldValidator: (e) {
+            if (e == '') {
+              return 'please fill this form ';
+            }
+            return null;
+          },
+          userType: LoginUserType.name,
+        ),
+        UserFormField(
+          keyName: 'phone',
+          defaultValue: '',
+          displayName: 'رقم الهاتف',
+          icon: Icon(Icons.phone),
+          fieldValidator: (e) {
+            if (e == '') {
+              return 'please fill this form ';
+            }
+            return null;
+          },
+          userType: LoginUserType.phone,
+        ),
+        UserFormField(
+          keyName: 'address',
+          defaultValue: '',
+          displayName: 'العنوان',
+          icon: Icon(Icons.map),
+          fieldValidator: (e) {
+            if (e == '') {
+              return 'please fill this form ';
+            }
+            return null;
+          },
+          userType: LoginUserType.name,
+        ),
+
+      ],
       onSignup: _signupUser,
-      additionalSignupFields: [],
       onSubmitAnimationCompleted: () async {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool("islogin", true);
