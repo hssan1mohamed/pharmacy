@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -79,11 +80,96 @@ Widget product() {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
+
+                    SizedBox(height: 10,),
+                    ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      padding: EdgeInsets.all(0),
+                      itemCount: (snapshot.data! as QuerySnapshot).docs.length,
+                      itemBuilder: (ctx, i) {
+                        String img =
+                            (snapshot.data! as QuerySnapshot).docs[i]['image'];
+                        String title =
+                            (snapshot.data! as QuerySnapshot).docs[i]['title'];
+                        String price =
+                            (snapshot.data! as QuerySnapshot).docs[i]['price'];
+                        String details = (snapshot.data! as QuerySnapshot)
+                            .docs[i]['details'];
+                        return Card(
+                          child: Container(
+                            height: 100,
+                            //padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              //color: Colors.grey[400],
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              children: [
+                                SizedBox(width: 10,),
+                                Expanded(
+                                  flex: 2,
+                                  child: Column(
+                                    children: [
+                                      SizedBox(height: 15,),
+
+                                      Row(
+                                        children: [
+                                          Text(
+                                            title,
+                                            style: TextStyle(
+                                              color: Colors.cyan,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                          Spacer(),
+                                          Icon(Icons.delete,
+                                              color: Colors.red),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5,),
+                                      Row(
+                                        children: [
+                                          Text('السعر :'),
+                                          Spacer(),
+                                          Text(
+                                              price.toString() + ' جنية '),
+                                        ],
+
+                                      ),
+                                      SizedBox(height: 5,),
+                                      Row(
+                                        children: [
+                                          Text('الكمية'),
+                                          Spacer(),
+                                          Text('1'),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5,),
+
+                                    ],
+                                  ),
+                                ),
+                                Spacer(),
+                                Container(
+                                    height: 50,
+                                    child: Image.network(img)),
+                                SizedBox(width: 10,)
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    SizedBox(height: 10,),
                     Card(
+
+                        semanticContainer: true,
                         shape: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide(color: Colors.cyan)),
                         child: Container(
+
                             padding: EdgeInsets.all(10),
                             //width: 100,
                             // height: 250,
@@ -107,65 +193,8 @@ Widget product() {
                                     ),
                                   )),
                             ))),
-                    ListView.builder(
-                      physics: ScrollPhysics(),
-                      shrinkWrap: true,
-                      padding: EdgeInsets.all(15),
-                      itemCount: (snapshot.data! as QuerySnapshot).docs.length,
-                      itemBuilder: (ctx, i) {
-                        String img =
-                            (snapshot.data! as QuerySnapshot).docs[i]['image'];
-                        String title =
-                            (snapshot.data! as QuerySnapshot).docs[i]['title'];
-                        String price =
-                            (snapshot.data! as QuerySnapshot).docs[i]['price'];
-                        String details = (snapshot.data! as QuerySnapshot)
-                            .docs[i]['details'];
-                        return Card(
-                          shape: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: BorderSide(color: Colors.cyan)),
-                          child: Container(
-                            padding: EdgeInsets.all(8),
+                    SizedBox(height: 10,),
 
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: SingleChildScrollView(
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    flex: 2,
-                                    child: Column(
-                                      children: [
-                                        ListTile(
-                                            trailing: Icon(Icons.delete,
-                                                color: Colors.red),
-                                            title: Text(
-                                              title,
-                                              style: TextStyle(
-                                                color: Colors.cyan,
-                                                fontSize: 18,
-                                              ),
-                                            )),
-                                        ListTile(
-                                            trailing: Text(
-                                                price.toString() + ' جنية '),
-                                            title: Text('السعر :')),
-                                        const ListTile(
-                                            trailing: Text('1'),
-                                            title: Text('الكمية')),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(flex: 1, child: Image.network(img))
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
                     Card(
                         shape: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
