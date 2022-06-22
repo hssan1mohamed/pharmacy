@@ -7,13 +7,15 @@ import 'package:pharmacy/shaerd/provider/provider.dart';
 import 'package:provider/provider.dart';
 
 import 'moduels/product_details/product_details.dart';
-
 Widget product1(
   BuildContext context,
   String text,
+
 ) {
   return Consumer<MyProvider>(builder: (context, myProvider, child) {
+
     return StreamBuilder(
+
       stream: FirebaseFirestore.instance
           .collection('products')
           .where('title', isGreaterThanOrEqualTo: text.toString())
@@ -77,7 +79,9 @@ Widget product1(
                                     SizedBox(
                                       width: 10,
                                     ),
+
                                     FavoriteButton(
+                                      isFavorite: false,
                                       valueChanged: (x) {
                                         FirebaseFirestore.instance
                                             .collection('products')

@@ -125,12 +125,13 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      FavoriteButton(
-                                        valueChanged: (x) {
-                                          null;
-                                        },
-                                        iconSize: 45,
-                                      ),
+                                     IconButton(onPressed: (){
+
+                                     },
+                                         icon: Icon(
+                                           Icons.delete_forever,
+                                           color: Colors.red,
+                                         )),
                                       SizedBox(
                                         width: 10,
                                       )
