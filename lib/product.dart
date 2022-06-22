@@ -81,7 +81,10 @@ Widget product1(
                                     ),
 
                                     FavoriteButton(
-                                      isFavorite: false,
+
+                                      isFavorite:(snapshot.data! as QuerySnapshot)
+                                          .docs.contains(FirebaseAuth.instance.currentUser!.uid+"f")
+                                          ? true:false,
                                       valueChanged: (x) {
                                         FirebaseFirestore.instance
                                             .collection('products')

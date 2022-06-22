@@ -119,7 +119,8 @@ Widget prodectWidget() =>
 
 
 class Add_remove extends StatefulWidget {
-  const Add_remove({Key? key}) : super(key: key);
+  String productId;
+   Add_remove(this.productId) ;
 
   @override
   State<Add_remove> createState() => _Add_removeState();
@@ -131,20 +132,30 @@ class _Add_removeState extends State<Add_remove> {
   @override
   Widget build(BuildContext context) {
     return CartStepperInt(
-
       axis:Axis.horizontal ,
       elevation: 3,
       radius: Radius.circular(5),
-
       count: _counter,
       size: 30,
       activeBackgroundColor: Colors.white,
-      didChangeCount: (count){
-        setState(() {
-          _counter=count;
-        });
-      }
 
+      didChangeCount: (count) {
+        if (count < 1) {
+         FirebaseFirestore.instance.collection('products').doc(widget.productId).update({
+           FirebaseAuth.instance.currentUser!.uid+"c"
+:
+         }) ;
+
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('تم الحذف من العربة'),
+            backgroundColor: Colors.orangeAccent,
+          ));
+          return;
+        }
+        setState(() {
+          _counter = count;
+        });
+      },
     );
   }
 }

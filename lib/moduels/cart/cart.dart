@@ -103,6 +103,8 @@ Widget product() {
                             (snapshot.data! as QuerySnapshot).docs[i]['price'];
                         String details = (snapshot.data! as QuerySnapshot)
                             .docs[i]['details'];
+                        String docId = (snapshot.data! as QuerySnapshot)
+                            .docs[i].id;
                         return Card(
                           child: Container(
                             height: 100,
@@ -133,7 +135,7 @@ Widget product() {
                                             ),
                                           ),
                                           Spacer(),
-                                          Add_remove(),
+                                          Add_remove(docId),
                                         ],
                                       ),
                                       SizedBox(height: 5,),
