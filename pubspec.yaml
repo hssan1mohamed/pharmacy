@@ -51,6 +51,7 @@ dependencies:
   shared_preferences: ^2.0.13
   cart_stepper: ^2.0.2
   google_fonts: ^2.3.2
+  google_sign_in: ^5.2.3
 
 
 dev_dependencies:

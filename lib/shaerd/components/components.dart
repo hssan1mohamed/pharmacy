@@ -140,18 +140,7 @@ class _Add_removeState extends State<Add_remove> {
       activeBackgroundColor: Colors.white,
 
       didChangeCount: (count) {
-        if (count < 1) {
-         FirebaseFirestore.instance.collection('products').doc(widget.productId).update({
-           FirebaseAuth.instance.currentUser!.uid+"c"
-:
-         }) ;
 
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text('تم الحذف من العربة'),
-            backgroundColor: Colors.orangeAccent,
-          ));
-          return;
-        }
         setState(() {
           _counter = count;
         });
