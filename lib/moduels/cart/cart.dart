@@ -1,7 +1,11 @@
 
+import 'dart:developer';
+
+import 'package:cart_stepper/cart_stepper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmacy/shaerd/components/components.dart';
 import 'package:provider/provider.dart';
 
 import '../../shaerd/provider/provider.dart';
@@ -10,11 +14,14 @@ import '../product_details/product_details.dart';
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
 
+
+
   @override
   State<CartScreen> createState() => _CartScreenState();
 }
 
 class _CartScreenState extends State<CartScreen> {
+  int _counter  = 1;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -105,6 +112,8 @@ Widget product() {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 SizedBox(width: 10,),
                                 Expanded(
@@ -114,6 +123,7 @@ Widget product() {
                                       SizedBox(height: 15,),
 
                                       Row(
+
                                         children: [
                                           Text(
                                             title,
@@ -123,8 +133,7 @@ Widget product() {
                                             ),
                                           ),
                                           Spacer(),
-                                          Icon(Icons.delete,
-                                              color: Colors.red),
+                                          Add_remove(),
                                         ],
                                       ),
                                       SizedBox(height: 5,),

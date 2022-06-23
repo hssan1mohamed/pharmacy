@@ -1,5 +1,9 @@
+import 'package:cart_stepper/cart_stepper.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:favorite_button/favorite_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import '../../moduels/product_details/product_details.dart';
 import '../provider/provider.dart';
@@ -112,3 +116,40 @@ Widget prodectWidget() =>
             );
           });
     });
+
+
+class Add_remove extends StatefulWidget {
+  const Add_remove({Key? key}) : super(key: key);
+
+  @override
+  State<Add_remove> createState() => _Add_removeState();
+}
+
+class _Add_removeState extends State<Add_remove> {
+  int _counter =1;
+
+  @override
+  Widget build(BuildContext context) {
+    return CartStepperInt(
+
+      axis:Axis.horizontal ,
+      elevation: 3,
+      radius: Radius.circular(5),
+
+      count: _counter,
+      size: 30,
+      activeBackgroundColor: Colors.white,
+      didChangeCount: (count){
+        setState(() {
+          _counter=count;
+        });
+      }
+
+    );
+  }
+}
+
+
+
+
+
