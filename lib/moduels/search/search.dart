@@ -27,33 +27,44 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.cyan.shade300,
-            title: Container(
-              decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
-                  borderRadius: BorderRadius.circular(20)),
-              child: TextField(
-                controller: _textEditingController,
-                focusNode: _textFocusNode,
-                cursorColor: Colors.black,
-                decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                    prefixIcon: Icon(Icons.search),
-                    hintText: 'البحث',
-                    contentPadding: EdgeInsets.all(8)),
-                onChanged: (value) {
-                  setState(() {
-                    txt = value;
-                  });
-                },
+            bottom: PreferredSize(
+              preferredSize: Size(size.width,size.height *0.08),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: TextField(
+                    controller: _textEditingController,
+                    focusNode: _textFocusNode,
+                    cursorColor: Colors.black,
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                        prefixIcon: Icon(Icons.search),
+                        hintText: 'ابحث هنا ... ',
+                        contentPadding: EdgeInsets.all(8)),
+                    onChanged: (value) {
+                      setState(() {
+                        txt = value;
+                      });
+                    },
+                  ),
+                ),
               ),
-            )),
+
+            ),
+            title:Text('البحث',style: TextStyle(fontSize: 22,color: Colors.white,fontWeight: FontWeight.bold),),
+          centerTitle: true,
+        ),
         body: product1(context, txt.toString()));
   }
 }

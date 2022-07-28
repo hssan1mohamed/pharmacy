@@ -73,11 +73,11 @@ Widget product(String title) {
               }
               return GridView.builder(
                   padding: EdgeInsets.all(15),
-                  physics: ScrollPhysics(),
+                  physics: BouncingScrollPhysics(),
                   shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 220,
-                      childAspectRatio: 1.5 /2,
+                      childAspectRatio: 1.5 /2.2,
                       crossAxisSpacing: 5,
                       mainAxisSpacing: 5),
                   itemCount: (snapshot.data! as QuerySnapshot).docs.length,

@@ -106,67 +106,69 @@ Widget product() {
                         String docId = (snapshot.data! as QuerySnapshot)
                             .docs[i].id;
                         return Card(
-                          child: Container(
-                            height: 100,
-                            //padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              //color: Colors.grey[400],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(width: 10,),
-                                Expanded(
-                                  flex: 2,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(height: 15,),
+                          child: Expanded(
+                            child: Container(
+                              height: 100,
+                              //padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                //color: Colors.grey[400],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(width: 10,),
+                                  Expanded(
+                                    flex: 2,
+                                    child: Column(
+                                      children: [
+                                        SizedBox(height: 15,),
 
-                                      Row(
+                                        Row(
 
-                                        children: [
-                                          Text(
-                                            title,
-                                            style: TextStyle(
-                                              color: Colors.cyan,
-                                              fontSize: 18,
+                                          children: [
+                                            Text(
+                                              title,
+                                              style: TextStyle(
+                                                color: Colors.cyan,
+                                                fontSize: 18,
+                                              ),
                                             ),
-                                          ),
-                                          Spacer(),
-                                          Add_remove(docId),
-                                        ],
-                                      ),
-                                      SizedBox(height: 5,),
-                                      Row(
-                                        children: [
-                                          Text('السعر :'),
-                                          Spacer(),
-                                          Text(
-                                              price.toString() + ' جنية '),
-                                        ],
+                                            Spacer(),
+                                            Add_remove(docId),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5,),
+                                        Row(
+                                          children: [
+                                            Text('السعر :'),
+                                            Spacer(),
+                                            Text(
+                                                price.toString() + ' جنية '),
+                                          ],
 
-                                      ),
-                                      SizedBox(height: 5,),
-                                      Row(
-                                        children: [
-                                          Text('الكمية'),
-                                          Spacer(),
-                                          Text('1'),
-                                        ],
-                                      ),
-                                      SizedBox(height: 5,),
+                                        ),
+                                        SizedBox(height: 5,),
+                                        Row(
+                                          children: [
+                                            Text('الكمية'),
+                                            Spacer(),
+                                            Text('1'),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5,),
 
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Spacer(),
-                                Container(
-                                    height: 50,
-                                    child: Image.network(img)),
-                                SizedBox(width: 10,)
-                              ],
+                                  Spacer(),
+                                  Container(
+                                      height: 50,
+                                      child: Image.network(img)),
+                                  SizedBox(width: 10,)
+                                ],
+                              ),
                             ),
                           ),
                         );

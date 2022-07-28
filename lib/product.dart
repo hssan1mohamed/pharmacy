@@ -27,37 +27,38 @@ Widget product1(
           case ConnectionState.waiting:
             return Center(child: CircularProgressIndicator());
           default:
-            return GridView.builder(
-                physics: ScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 220,
-                    childAspectRatio: 1.5 / 2,
-                    crossAxisSpacing: 5,
-                    mainAxisSpacing: 5),
-                itemCount: (snapshot.data! as QuerySnapshot).docs.length,
-                itemBuilder: (ctx, i) {
-                  String img = (snapshot.data! as QuerySnapshot)
-                      .docs[i]['image']
-                      .toString();
-                  String title = (snapshot.data! as QuerySnapshot)
-                      .docs[i]['title']
-                      .toString();
-                  String price = (snapshot.data! as QuerySnapshot)
-                      .docs[i]['price']
-                      .toString();
-                  String details = (snapshot.data! as QuerySnapshot)
-                      .docs[i]['details']
-                      .toString();
-                  return Card(
-                    shape: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(color: Colors.cyan)),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: SingleChildScrollView(
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.builder(
+                  physics: BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 220,
+                      childAspectRatio: 1.5 / 2.2,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5),
+                  itemCount: (snapshot.data! as QuerySnapshot).docs.length,
+                  itemBuilder: (ctx, i) {
+                    String img = (snapshot.data! as QuerySnapshot)
+                        .docs[i]['image']
+                        .toString();
+                    String title = (snapshot.data! as QuerySnapshot)
+                        .docs[i]['title']
+                        .toString();
+                    String price = (snapshot.data! as QuerySnapshot)
+                        .docs[i]['price']
+                        .toString();
+                    String details = (snapshot.data! as QuerySnapshot)
+                        .docs[i]['details']
+                        .toString();
+                    return Card(
+                      shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(color: Colors.cyan)),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         child: InkWell(
                           onTap: () async {
                             Navigator.of(context).push(MaterialPageRoute(
@@ -175,9 +176,9 @@ Widget product1(
                           ),
                         ),
                       ),
-                    ),
-                  );
-                });
+                    );
+                  }),
+            );
         }
       },
     );

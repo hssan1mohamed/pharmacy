@@ -52,6 +52,8 @@ dependencies:
   cart_stepper: ^2.0.2
   google_fonts: ^2.3.2
   google_sign_in: ^5.2.3
+  simple_animations: ^4.0.2
+
 
 
 dev_dependencies:

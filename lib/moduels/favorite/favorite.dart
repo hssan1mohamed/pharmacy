@@ -76,12 +76,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 );
               }
               return GridView.builder(
-                  physics: ScrollPhysics(),
+                  physics: BouncingScrollPhysics(),
                   shrinkWrap: true,
                   padding: EdgeInsets.all(15),
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 220,
-                      childAspectRatio: 1.5 / 2,
+                      childAspectRatio: 1.5 / 2.2,
                       crossAxisSpacing: 5,
                       mainAxisSpacing: 5),
                   itemCount: (snapshot.data! as QuerySnapshot).docs.length,
@@ -95,15 +95,18 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     String details =
                         (snapshot.data! as QuerySnapshot).docs[i]['details'];
 
-                    return Card(
-                      shape: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(color: Colors.cyan)),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: SingleChildScrollView(
+                    return Container(
+
+                      child: Card(
+                        semanticContainer: true,
+                        shape: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(color: Colors.cyan)),
+                        child: Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                           child: InkWell(
                             onTap: () async {
                               Navigator.of(context).push(MaterialPageRoute(
@@ -114,82 +117,80 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                         price,
                                       )));
                             },
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                     IconButton(onPressed: (){
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                   IconButton(onPressed: (){
 
-                                     },
-                                         icon: Icon(
-                                           Icons.delete_forever,
-                                           color: Colors.red,
-                                         )),
-                                      SizedBox(
-                                        width: 10,
-                                      )
+                                   },
+                                       icon: Icon(
+                                         Icons.delete_forever,
+                                         color: Colors.red,
+                                       )),
+                                    SizedBox(
+                                      width: 10,
+                                    )
+                                  ],
+                                ),
+                                //  SizedBox(height: 5,),
+
+                                Container(
+                                  width: 100,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: NetworkImage(img.toString()),
+                                          fit: BoxFit.fill)),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          child: Text(
+                                        price.toString() + ' جنية ',
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.bold),
+                                        textDirection: TextDirection.ltr,
+                                      )),
+                                      Spacer(),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          title.toString(),
+                                          textDirection: TextDirection.rtl,
+                                          maxLines: 1,
+                                        ),
+                                      ),
                                     ],
                                   ),
-                                  //  SizedBox(height: 5,),
-
-                                  Container(
-                                    width: 100,
-                                    height: 80,
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: NetworkImage(img.toString()),
-                                            fit: BoxFit.fill)),
+                                ),
+                                const Divider(
+                                  color: Color(0xFF13b1fb),
+                                ),
+                                RaisedButton(
+                                  onPressed: () async {},
+                                  child: const Text(
+                                    'اضف الى العربة',
+                                    style: TextStyle(color: Colors.white),
                                   ),
-
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                            child: Text(
-                                          price.toString() + ' جنية ',
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                              color: Colors.red,
-                                              fontWeight: FontWeight.bold),
-                                          textDirection: TextDirection.ltr,
-                                        )),
-                                        Spacer(),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Text(
-                                            title.toString(),
-                                            textDirection: TextDirection.rtl,
-                                            maxLines: 1,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const Divider(
-                                    color: Color(0xFF13b1fb),
-                                  ),
-                                  RaisedButton(
-                                    onPressed: () async {},
-                                    child: const Text(
-                                      'اضف الى العربة',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    color: Colors.cyan,
-                                    shape: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                        borderSide:
-                                            BorderSide(color: Colors.cyan)),
-                                  )
-                                ],
-                              ),
+                                  color: Colors.cyan,
+                                  shape: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                      borderSide:
+                                          BorderSide(color: Colors.cyan)),
+                                )
+                              ],
                             ),
                           ),
                         ),
