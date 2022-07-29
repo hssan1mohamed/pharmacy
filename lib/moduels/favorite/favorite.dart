@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pharmacy/moduels/home/home_test.dart';
 import 'package:provider/provider.dart';
 
@@ -94,7 +96,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         (snapshot.data! as QuerySnapshot).docs[i]['price'];
                     String details =
                         (snapshot.data! as QuerySnapshot).docs[i]['details'];
-
+                    String productID =
+                        (snapshot.data! as QuerySnapshot).docs[i].id;
                     return Card(
                       shape: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
@@ -111,7 +114,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                         title,
                                         details,
                                         img,
-                                        price,
+                                        price,productID
                                       )));
                             },
                             child: Container(
@@ -126,7 +129,18 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                         width: 10,
                                       ),
                                      IconButton(onPressed: (){
-
+                                       FirebaseFirestore.instance
+                                           .collection('products')
+                                           .doc((snapshot.data!
+                                       as QuerySnapshot)
+                                           .docs[i]
+                                           .id)
+                                           .update({
+                                         FirebaseAuth
+                                             .instance.currentUser!.uid +
+                                             '+f': FieldValue.delete(),
+                                       }).then((value) => Fluttertoast.showToast(
+                                           msg: 'تمت الحذف من المفضلة'));
                                      },
                                          icon: Icon(
                                            Icons.delete_forever,
@@ -139,13 +153,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                   ),
                                   //  SizedBox(height: 5,),
 
-                                  Container(
+                                  CachedNetworkImage(
                                     width: 100,
                                     height: 80,
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: NetworkImage(img.toString()),
-                                            fit: BoxFit.fill)),
+                                    imageUrl: img,
+                                    placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                                    errorWidget: (context, url, error) => Icon(Icons.error),
                                   ),
 
                                   Padding(
@@ -177,7 +190,19 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                     color: Color(0xFF13b1fb),
                                   ),
                                   RaisedButton(
-                                    onPressed: () async {},
+                                    onPressed: () async {
+                                      FirebaseFirestore.instance
+                                          .collection('products')
+                                          .doc((snapshot.data! as QuerySnapshot)
+                                          .docs[i]
+                                          .id)
+                                          .update({
+                                        FirebaseAuth.instance.currentUser!.uid +
+                                            '+c': "1",
+                                      });
+                                      Fluttertoast.showToast(
+                                          msg: 'تمت الاضافة للعربة');
+                                    },
                                     child: const Text(
                                       'اضف الى العربة',
                                       style: TextStyle(color: Colors.white),

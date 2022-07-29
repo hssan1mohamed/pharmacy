@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,15 +8,13 @@ import 'package:pharmacy/shaerd/provider/provider.dart';
 import 'package:provider/provider.dart';
 
 import 'moduels/product_details/product_details.dart';
+
 Widget product1(
-  BuildContext context,
-  String text,
-
-) {
+    BuildContext context,
+    String text,
+    ) {
   return Consumer<MyProvider>(builder: (context, myProvider, child) {
-
     return StreamBuilder(
-
       stream: FirebaseFirestore.instance
           .collection('products')
           .where('title', isGreaterThanOrEqualTo: text.toString())
@@ -49,6 +48,8 @@ Widget product1(
                   String details = (snapshot.data! as QuerySnapshot)
                       .docs[i]['details']
                       .toString();
+                  String productID =
+                      (snapshot.data! as QuerySnapshot).docs[i].id;
                   return Card(
                     shape: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
@@ -62,11 +63,11 @@ Widget product1(
                           onTap: () async {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => product_details(
-                                      title,
-                                      details,
-                                      img,
-                                      price,
-                                    )));
+                                  title,
+                                  details,
+                                  img,
+                                  price,productID
+                                )));
                           },
                           child: Container(
                             child: Column(
@@ -79,26 +80,51 @@ Widget product1(
                                     SizedBox(
                                       width: 10,
                                     ),
-
                                     FavoriteButton(
-
-                                      isFavorite:(snapshot.data! as QuerySnapshot)
-                                          .docs.contains(FirebaseAuth.instance.currentUser!.uid+"f")
-                                          ? true:false,
+                                      isFavorite:
+                                      (snapshot.data! as QuerySnapshot)
+                                          .docs[i]
+                                          .data()
+                                          .toString()
+                                          .contains(FirebaseAuth
+                                          .instance
+                                          .currentUser!
+                                          .uid +
+                                          '+f')
+                                          ? true
+                                          : false,
                                       valueChanged: (x) {
-                                        FirebaseFirestore.instance
-                                            .collection('products')
-                                            .doc((snapshot.data!
-                                                    as QuerySnapshot)
-                                                .docs[i]
-                                                .id)
-                                            .update({
-                                          FirebaseAuth
-                                                  .instance.currentUser!.uid +
-                                              '+f': "1",
-                                        });
-                                        Fluttertoast.showToast(
-                                            msg: 'تمت الاضافة للمفضلة');
+                                        if (x == true) {
+                                          FirebaseFirestore.instance
+                                              .collection('products')
+                                              .doc((snapshot.data!
+                                          as QuerySnapshot)
+                                              .docs[i]
+                                              .id)
+                                              .update({
+                                            FirebaseAuth
+                                                .instance.currentUser!.uid +
+                                                '+f': "1",
+                                          }).then((value) =>
+                                              Fluttertoast.showToast(
+                                                  msg:
+                                                  'تمت الاضافة للمفضلة'));
+                                        } else if (x == false) {
+                                          FirebaseFirestore.instance
+                                              .collection('products')
+                                              .doc((snapshot.data!
+                                          as QuerySnapshot)
+                                              .docs[i]
+                                              .id)
+                                              .update({
+                                            FirebaseAuth
+                                                .instance.currentUser!.uid +
+                                                '+f': FieldValue.delete(),
+                                          }).then((value) =>
+                                              Fluttertoast.showToast(
+                                                  msg:
+                                                  'تمت الحذف من المفضلة'));
+                                        }
                                       },
                                       iconSize: 45,
                                     ),
@@ -107,15 +133,15 @@ Widget product1(
                                     )
                                   ],
                                 ),
-                                //  SizedBox(height: 5,),
-
-                                Container(
+                                // //  SizedBox(height: 5,),
+                                CachedNetworkImage(
                                   width: 100,
                                   height: 80,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: NetworkImage(img.toString()),
-                                          fit: BoxFit.fill)),
+                                  imageUrl: img,
+                                  placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
                                 ),
 
                                 Padding(
@@ -124,13 +150,13 @@ Widget product1(
                                     children: [
                                       Expanded(
                                           child: Text(
-                                        price.toString() + ' جنية ',
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                            color: Colors.red,
-                                            fontWeight: FontWeight.bold),
-                                        textDirection: TextDirection.ltr,
-                                      )),
+                                            price.toString() + ' جنية ',
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontWeight: FontWeight.bold),
+                                            textDirection: TextDirection.ltr,
+                                          )),
                                       Spacer(),
                                       Expanded(
                                         flex: 1,
@@ -151,8 +177,8 @@ Widget product1(
                                     FirebaseFirestore.instance
                                         .collection('products')
                                         .doc((snapshot.data! as QuerySnapshot)
-                                            .docs[i]
-                                            .id)
+                                        .docs[i]
+                                        .id)
                                         .update({
                                       FirebaseAuth.instance.currentUser!.uid +
                                           '+c': "1",
@@ -168,7 +194,7 @@ Widget product1(
                                   shape: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(20),
                                       borderSide:
-                                          BorderSide(color: Colors.cyan)),
+                                      BorderSide(color: Colors.cyan)),
                                 )
                               ],
                             ),

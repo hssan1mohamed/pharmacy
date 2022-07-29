@@ -94,6 +94,9 @@ Widget product(String title) {
                     String details = (snapshot.data! as QuerySnapshot)
                         .docs[i]['details']
                         .toString();
+                    String productID =
+                        (snapshot.data! as QuerySnapshot).docs[i].id;
+
                     return Card(
                       shape: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
@@ -107,7 +110,7 @@ Widget product(String title) {
                             onTap: () async {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => product_details(
-                                      title, details, img, price)));
+                                      title, details, img, price,productID)));
                             },
                             child: Container(
                               child: Column(
