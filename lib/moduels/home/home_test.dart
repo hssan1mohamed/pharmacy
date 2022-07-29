@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:favorite_button/favorite_button.dart';
@@ -9,7 +10,7 @@ import 'package:flutter/rendering.dart';
 import 'package:pharmacy/moduels/favorite/favorite.dart';
 import 'package:pharmacy/moduels/product_details/product_details.dart';
 import 'package:pharmacy/moduels/search/search.dart';
-import 'package:pharmacy/product.dart';
+import 'package:pharmacy/products.dart';
 import 'package:pharmacy/shaerd/provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -20,19 +21,6 @@ class HomeTest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget container(String url) {
-      return Container(
-        width: double.infinity,
-        margin: EdgeInsets.all(2.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
-          image: DecorationImage(
-            image: NetworkImage(url),
-            fit: BoxFit.fill,
-          ),
-        ),
-      );
-    }
 
     IndexedWidgetBuilder itemBuilder;
     Size size = MediaQuery.of(context).size;
@@ -94,11 +82,14 @@ Widget Carousel() {
       margin: EdgeInsets.all(2.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
-        color: Colors.grey,
-        image: DecorationImage(
-          image: NetworkImage(url),
-          fit: BoxFit.fill,
-        ),
+       // color: Colors.grey,
+      ),
+      child: CachedNetworkImage(
+        imageUrl: url,
+        fit: BoxFit.fill,
+        placeholder: (context, url) =>
+            Center(child: CircularProgressIndicator()),
+        errorWidget: (context, url, error) => Icon(Icons.error),
       ),
     );
   }

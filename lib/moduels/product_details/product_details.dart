@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,16 +7,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class product_details extends StatefulWidget {
   String img;
-
+  String productID;
   String title;
   String details;
   String price;
   product_details(
-    this.title,
-    this.details,
-    this.img,
-    this.price,
-  );
+      this.title,
+      this.details,
+      this.img,
+      this.price,
+      this.productID
+      );
   //product_details({Key? key}) : super(key: key);
 
   @override
@@ -43,18 +45,24 @@ class _product_detailsState extends State<product_details> {
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           Container(
             padding: EdgeInsets.all(25),
-            height: height * 0.3,
+            height: height * 0.4,
             width: double.infinity,
             alignment: Alignment.center,
-            child: Hero(tag: 'h', child: Image.network(widget.img)),
+            child: Hero(tag: 'h', child: CachedNetworkImage(
+              imageUrl: widget.img,
+              placeholder: (context, url) => Center(
+                  child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) =>
+                  Icon(Icons.error),
+            ),),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Container(
-              height: height * 0.5998,
+              height: height * 0.4798,
               width: double.infinity,
               decoration: BoxDecoration(
-                  // color: Colors.cyan,
+                // color: Colors.cyan,
                   border: Border.all(color: Colors.cyan),
                   borderRadius: BorderRadius.circular(20)),
               alignment: Alignment.topLeft,
@@ -112,7 +120,17 @@ class _product_detailsState extends State<product_details> {
                     Container(
                       alignment: Alignment.center,
                       child: RaisedButton(
-                        onPressed: () async {},
+                        onPressed: () async {
+                          FirebaseFirestore.instance
+                              .collection('products')
+                              .doc(widget.productID)
+                              .update({
+                            FirebaseAuth.instance.currentUser!.uid +
+                                '+c': "1",
+                          });
+                          Fluttertoast.showToast(
+                              msg: 'تمت الاضافة للعربة');
+                        },
                         child: const Text(
                           'اضافة الي العربة',
                           style: TextStyle(color: Colors.white),
