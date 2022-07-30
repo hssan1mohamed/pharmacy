@@ -27,7 +27,7 @@ Widget product1(
             return Center(child: CircularProgressIndicator());
           default:
             return GridView.builder(
-                physics: ScrollPhysics(),
+                physics: BouncingScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 220,
