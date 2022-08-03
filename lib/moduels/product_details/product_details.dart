@@ -119,7 +119,7 @@ class _product_detailsState extends State<product_details> {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child: RaisedButton(
+                      child: ElevatedButton(
                         onPressed: () async {
                           FirebaseFirestore.instance
                               .collection('products')
@@ -135,10 +135,7 @@ class _product_detailsState extends State<product_details> {
                           'اضافة الي العربة',
                           style: TextStyle(color: Colors.white),
                         ),
-                        color: Colors.cyan,
-                        shape: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(color: Colors.cyan)),
+
                       ),
                     ),
                   ],

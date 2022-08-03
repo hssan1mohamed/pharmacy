@@ -157,7 +157,7 @@ Widget itemName() {
                       child: Container(
                         padding: EdgeInsets.all(15),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(8),
                             color: Colors.cyan),
                         child: Center(
                           child: Text(

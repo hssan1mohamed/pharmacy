@@ -30,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.cyan.shade300,
+          backgroundColor: Colors.cyan,
           bottom: PreferredSize(
             preferredSize: Size(size.width,size.height *0.08),
             child: Padding(
@@ -62,7 +62,8 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
 
           ),
-          title:Text('البحث',style: TextStyle(fontSize: 22,color: Colors.white,fontWeight: FontWeight.bold),),
+          title:Text('البحث',  style: TextStyle(
+              color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),),
           centerTitle: true,
         ),
         body: product1(context, txt.toString()));

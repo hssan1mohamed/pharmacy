@@ -189,7 +189,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                   const Divider(
                                     color: Color(0xFF13b1fb),
                                   ),
-                                  RaisedButton(
+                                  ElevatedButton(
                                     onPressed: () async {
                                       FirebaseFirestore.instance
                                           .collection('products')
@@ -207,11 +207,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                       'اضف الى العربة',
                                       style: TextStyle(color: Colors.white),
                                     ),
-                                    color: Colors.cyan,
-                                    shape: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                        borderSide:
-                                            BorderSide(color: Colors.cyan)),
                                   )
                                 ],
                               ),

@@ -180,17 +180,13 @@ Widget product(String title) {
                                   const Divider(
                                     color: Color(0xFF13b1fb),
                                   ),
-                                  RaisedButton(
+                                  ElevatedButton(
                                     onPressed: () async {},
                                     child: const Text(
                                       'اضف الى العربة',
                                       style: TextStyle(color: Colors.white),
                                     ),
-                                    color: Colors.cyan,
-                                    shape: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                        borderSide:
-                                            BorderSide(color: Colors.cyan)),
+
                                   )
                                 ],
                               ),
