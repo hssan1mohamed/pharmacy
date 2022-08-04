@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pharmacy/moduels/intro_page/splash_screen.dart';
 import 'package:pharmacy/moduels/on_boarding/on_boarding_screen.dart';
 import 'package:pharmacy/moduels/profile/profile.dart';
 import 'package:pharmacy/moduels/sign_in/sign_in.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.cyan,
         ),
-        home: const OnBoardingScreen(),
+        home:  SplashScreen(),
       ),
     );
   }
@@ -63,7 +64,7 @@ class MyApp1 extends StatelessWidget {
         ],
         supportedLocales: const [Locale("ar","AE")],
         locale: const Locale("ar","AE"),
-        home: const HomeLayout(),
+        home:  SplashScreen(),
       ),
     );
   }

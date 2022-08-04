@@ -52,6 +52,7 @@ dependencies:
   cart_stepper: ^2.0.2
   google_fonts: ^2.3.2
   cached_network_image: ^3.2.1
+  splash_screen_view: ^3.0.0
 
 
 dev_dependencies:
@@ -87,6 +88,7 @@ flutter:
     - assets/images/drug.png
     - assets/images/cart.png
     - assets/images/search.png
+    - assets/images/logo.png
 
 
 
